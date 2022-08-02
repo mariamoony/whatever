@@ -1,0 +1,19 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(100px, auto);
+    justify-content: center;
+    align-content: center;
+}
+
+.item{
+    padding: 10px;
+    border: 1px solid;
+    border-color: lawngreen;
+}
+
+.item_4 {
+    grid-column: 1/3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}

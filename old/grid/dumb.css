@@ -1,0 +1,28 @@
+.container {
+    display: grid;
+    grid-template-areas: 
+        'header header'
+        'sidebar content';
+    grid-template-columns: 150px;
+    grid-template-rows: 50px;
+}
+
+.item {
+    padding: 10px;
+    border: 1px solid;
+    border-color:mediumorchid;
+}
+
+.header {
+    grid-area: header;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    align-self: start;
+}
+
+.content {
+    grid-area: content;
+}
+

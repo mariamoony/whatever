@@ -1,0 +1,15 @@
+.container {
+    background-color: indianred;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    width: 200px;
+    height: 200px;
+    background-color: floralwhite;
+    border: solid 2px green;
+    margin: 10px;
+    flex: 1 0 17%;
+}
+
