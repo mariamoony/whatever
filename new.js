@@ -1,10 +1,12 @@
-isEven = function(number){
-    if (number == 0)
-        return true;
-    if (number == 1)
-        return false;
-    if (number < 0)
-        return isEven (number + 2);
-    return isEven(number - 2);
+countChars = function(string, char) {
+    counter = 0;
+    for (a = string.length; a > 0; a--) {
+        inspectedChar = string.charAt(a - 1);
+        if (inspectedChar == char.toUpperCase() || inspectedChar == char.toLowerCase()){
+            counter++;
+        }
+    }
+    return counter;
 }
-console.log(isEven(-1));
+
+console.log(countChars('beekeeper', 'E'));
