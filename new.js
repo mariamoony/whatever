@@ -8,7 +8,7 @@ function printFarmInventory(cows, chickens, pigs){
         return function saveNumber(number) {
             var string = String(number);
             while (string.length < length)
-                string = "0" + string;
+                string = " " + string;
             return string;
         }
 
