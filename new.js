@@ -1,29 +1,10 @@
-function printFarmInventory(cows, chickens, pigs){
-    function getNumberLength(cows, chickens, pigs){
-        numberLength = Math.max(String(cows).length, String(chickens).length, String(pigs).length);
-        return(numberLength);
-    }
-
-    function formatNumber(length) {
-        return function saveNumber(number) {
-            var string = String(number);
-            while (string.length < length)
-                string = " " + string;
-            return string;
-        }
-
-    }
-
-    function printAnimal(number, animal) {
-        console.log(number + ' ' + animal);
-    }
-
-    numberLength = getNumberLength(cows, chickens, pigs);
-    numberFormat = formatNumber(numberLength);
-
-    printAnimal(numberFormat(cows), 'cows');
-    printAnimal(numberFormat(chickens), 'chickens');
-    printAnimal(numberFormat(pigs), 'pigs');
-
+isEven = function(number){
+    if (number == 0)
+        return true;
+    if (number == 1)
+        return false;
+    if (number < 0)
+        return isEven (number + 2);
+    return isEven(number - 2);
 }
-printFarmInventory(100, 10000, 15);
+console.log(isEven(-1));
