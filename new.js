@@ -1,13 +1,23 @@
-var array = [1, 2, 3, 5];
-console.log(array);
-console.log(array.pop()); // возвращает элемент, изменяет массив
-console.log(array);
-console.log(array.push(7)); // возвращает какую-то хуйню, изменяет массив
-console.log(array);
-console.log(array.shift()); // возвращает элемент, изменяет массив
-console.log(array);
-console.log(array.unshift(0)); // возвращает какую-то хуйню, изменяет массив
-console.log(array);
-console.log(array.slice(1, 3)); // возвращает новый массив, не изменяет старый массив
-console.log(array);
-console.log(Math.round(Math.random() * 20)); // roll d20
+function range(first, last, step) {
+    arRange = [];
+    if (first <= last) {
+        for (i = first; i <= last; (step == undefined ? i++ : i += step))
+            arRange.push(i);
+        return arRange;
+    }
+    for (i = -first; i <= -last; (step == undefined ? i++ : i -= step))
+        arRange.push(-i);
+    return arRange; 
+
+}
+
+console.log(range(5, 2, -2));
+
+function sum(array) {
+    result = 0;
+    for (i in array)
+        result += array[i];
+    return result;
+}
+
+console.log(sum(range(5, 2, -1)));
