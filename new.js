@@ -1,25 +1,19 @@
-function range(first, last, step) {
-    arRange = [];
-    if (step == undefined) step = 1;
-    if (first <= last) {
-        for (i = first; i <= last; i += step)
-            arRange.push(i);
-        return arRange;
+function reverseArray(array) {
+    newArray = [];
+    arrayLength = array.length
+    for (i = 0; i < arrayLength; i++) {
+        newArray.push(array.pop());
     }
-    for (i = first; i >= last; i += step)
-        arRange.push(i);
-    return arRange;
-
+    return newArray;
 }
 
-console.log(range(5, 2, -2));
-
-function sum(array) {
-    result = 0;
-    for (i in array) {
-        result += array[i];
+function reverseArrayInPlace(array) {
+    arrayLength = array.length;
+    for (i = 1; i < arrayLength * 2 - 1; i += 2) {
+        array.unshift(array[i]);
     }
-    return result;
+    return array = array.slice(0, arrayLength);
 }
 
-console.log(sum(range(5, 2, -1)));
+console.log(reverseArray([1, 2, 3, 4]));
+console.log(reverseArrayInPlace([1, 2, 3, 4]));
