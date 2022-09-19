@@ -1,19 +1,37 @@
-function reverseArray(array) {
-    newArray = [];
-    arrayLength = array.length
-    for (i = 0; i < arrayLength; i++) {
-        newArray.push(array.pop());
+function arrayToList(array) {
+    list = null;
+    for (i = array.length - 1; i >= 0; i--) {
+        list = {value: array[i], rest: list};
     }
-    return newArray;
+    return list;
 }
 
-function reverseArrayInPlace(array) {
-    arrayLength = array.length;
-    for (i = 1; i < arrayLength * 2 - 1; i += 2) {
-        array.unshift(array[i]);
+console.log(arrayToList([10, 20]));
+
+function listToArray(list) {
+    array = [];
+    if (list.rest != null) {
+        listToArray(list.rest);
     }
-    return array = array.slice(0, arrayLength);
+    array.unshift(list.value);
+    return array;
 }
 
-console.log(reverseArray([1, 2, 3, 4]));
-console.log(reverseArrayInPlace([1, 2, 3, 4]));
+console.log(listToArray(arrayToList([10, 20, 30])));
+
+function prepend(newElement, list) {
+    return {value: newElement, rest: list};
+}
+
+console.log(prepend(10, prepend(20, null)));
+
+function nth (list, index) {
+    array = [];
+    if (list.rest != null) {
+        nth(list.rest);
+    }
+    array.unshift(list.value);
+    return array[index];
+}
+
+console.log(nth(arrayToList([10, 20, 30]), 5));
