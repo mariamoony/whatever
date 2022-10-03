@@ -1,37 +1,17 @@
-function arrayToList(array) {
-    list = null;
-    for (i = array.length - 1; i >= 0; i--) {
-        list = {value: array[i], rest: list};
+function deepEqual(smth1, smth2) {
+    if (smth1 == null || smth2 == null) 
+        return smth1 === smth2;
+    if (typeof smth1 == 'object' && typeof smth2 == 'object') {
+        for (prop in smth1) {
+            if (!deepEqual(smth1[prop], smth2[prop]))
+                return false;
+        }
+        return true;
     }
-    return list;
+    return smth1 === smth2;
 }
 
-console.log(arrayToList([10, 20]));
-
-function listToArray(list) {
-    array = [];
-    if (list.rest != null) {
-        listToArray(list.rest);
-    }
-    array.unshift(list.value);
-    return array;
-}
-
-console.log(listToArray(arrayToList([10, 20, 30])));
-
-function prepend(newElement, list) {
-    return {value: newElement, rest: list};
-}
-
-console.log(prepend(10, prepend(20, null)));
-
-function nth (list, index) {
-    array = [];
-    if (list.rest != null) {
-        nth(list.rest);
-    }
-    array.unshift(list.value);
-    return array[index];
-}
-
-console.log(nth(arrayToList([10, 20, 30]), 5));
+var obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+console.log(deepEqual(obj, {here: 1, object: 2}));
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
