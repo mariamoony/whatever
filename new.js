@@ -1,17 +1,25 @@
-function deepEqual(smth1, smth2) {
-    if (smth1 == null || smth2 == null) 
-        return smth1 === smth2;
-    if (typeof smth1 == 'object' && typeof smth2 == 'object') {
-        for (prop in smth1) {
-            if (!deepEqual(smth1[prop], smth2[prop]))
-                return false;
-        }
-        return true;
+String.prototype.format = function () {
+    // store arguments in an array
+    var args = arguments;
+    // use replace to iterate over the string
+    // select the match and check if the related argument is present
+    // if yes, replace the match with the argument
+    return this.replace(/{([0-9]+)}/g, function (match, index) {
+      // check if the argument is present
+      return typeof args[index] == 'undefined' ? match : args[index];
+    });
+};
+
+function politeFunc(f, txt) {
+    return function(arg) {
+        res = f(arg);
+        console.log(txt.format(arg, res));
     }
-    return smth1 === smth2;
 }
 
-var obj = {here: {is: "an"}, object: 2};
-console.log(deepEqual(obj, obj));
-console.log(deepEqual(obj, {here: 1, object: 2}));
-console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+function tempConvertFtoC(valNum) {
+    return (valNum-32) / 1.8;
+}
+
+politeConvert = politeFunc(tempConvertFtoC, '{0} Fahrenheit = {1} Celsius');
+politeConvert(446);
