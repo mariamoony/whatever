@@ -45,26 +45,28 @@ function average(array) {
   return array.reduce(plus) / array.length;
 }
 
-var byName = {};
-ancestry.forEach(function(person) {
-  byName[person.name] = person;
-});
+function age(p) { return p.died - p.born; }
 
-var mothers = ancestry.map(function(person) {
-  return person.mother;
+centuries = ancestry.map(function(person){
+  return Math.ceil(person.died / 100);
 })
 
-
-var childbirthAges = ancestry.map(function(person) {
-  if (!(person.mother)) return null;
-  if (!byName[person.mother]) return null;
-  var motherBorn = byName[person.mother].born;
-  var personBorn = person.born
-  return personBorn - motherBorn;
+uniqueCenturies = centuries.filter(function(century, index){
+  return centuries.indexOf(century) === index;
 })
 
-var noNullcbAges = childbirthAges.filter(function(cbAge){
-  return cbAge;
-})
+var centurisedAncectry = {};
+uniqueCenturies.forEach(function(century) {
+  centurisedAncectry[century] = ancestry.filter(function(person){
+    return Math.ceil(person.died / 100) == century;
+  })
+}); 
 
-console.log(average(noNullcbAges));
+var averageAgeCentury = {}
+for (century in centurisedAncectry) {
+  averageAgeCentury[century] = Math.round(average(centurisedAncectry[century].map(function(person){
+    return age(person);
+  }))*10) / 10
+}
+
+console.log(averageAgeCentury);
